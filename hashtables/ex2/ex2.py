@@ -9,37 +9,34 @@ def reconstruct_trip(tickets, length):
     """
     YOUR CODE HERE
     """
-    # Your code here
-    #       destination_1 == destination_2 
-    # cache = {[(source_1, destination_1) , (source_2, destination_2)]}
-    # What is the route? 
-        # the route will be a list of connecting flights 
-        # if destination == source we can add to our route 
 
     cache = {} 
     route = [] 
 
 
-    # let's build our hash table first 
+    # for every ticket store inside the cache set the every ticket's
+    # source as the key and it's value as the destination
     for Ticket in tickets:
         cache[Ticket.source] = Ticket.destination # (Ticket.key, Ticket.value)
         
-        
-    #let's append our Ticket with the key of None first, to our route 
+    #let's append our Ticket with the key of None first, to our route
+    # and set our starting key as none  
     route.append(cache["NONE"])
+    key = cache["NONE"]
 
 
-
-    # we want to go through the cache 
+    # we want to go through the cache, while the key's value is not == to none 
+    # append the key to our route list. 
+    # Finally update our key to the next in the cache 
     while cache[key] != "NONE": 
 
+        route.append(cache[key])
+        key = cache[key]
 
-    # We want to finally add the last ticket to our list with the value of None to our route
+    #finally add the last ticket to our list with the value of None to our route
     route.append('NONE')
 
-
     return route
-
 
 
 # Test 
@@ -60,6 +57,5 @@ tickets = [ticket_1, ticket_2, ticket_3, ticket_4, ticket_5,
 
 
 route = reconstruct_trip(tickets, 10)
-print(route)
 
 

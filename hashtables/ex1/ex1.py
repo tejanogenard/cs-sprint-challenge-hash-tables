@@ -20,9 +20,7 @@ def get_indices_of_item_weights(weights, length, limit): # O(n)
         
     for num in range(length):
         difference = limit - weights[num]
-        #if the hash table contains an entry for `limit - weight`. 
         if difference in cache:
-            if difference + weights[num]:
                 return(cache[difference], num)
 
 
